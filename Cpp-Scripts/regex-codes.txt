@@ -1,0 +1,3 @@
+fix python import 1
+(body_handle_array.+?)\.append\((.+,.+,)(.+)\[\d\]\)
+$2 $1, $3
