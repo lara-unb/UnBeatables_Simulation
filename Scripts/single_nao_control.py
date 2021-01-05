@@ -10,7 +10,7 @@ from manage_joints import get_first_handles,JointControl
 print '================ Program Sarted ================'
 
 vrep.simxFinish(-1)
-clientID=vrep.simxStart('127.0.0.2',19999,True,True,5000,5)
+clientID=vrep.simxStart('127.0.0.2',20000,True,True,5000,5)
 if clientID!=-1:
 	print 'Connected to remote API server'
 

@@ -27,13 +27,29 @@ class VrepImage():
 
 
 if __name__ == "__main__":
+    # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
+    out_top = cv2.VideoWriter('top_camera.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 20, (640,480))
+    out_bottom = cv2.VideoWriter('bottom_camera.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 20, (640,480))
 
     client = b0RemoteApi.RemoteApiClient('b0RemoteApi_NAO_Node', 'b0RemoteApiNAO',
                                      60, setupSubscribersAsynchronously=True)
-    vrepimage = VrepImage(client)
-    cv2.namedWindow("image")
+    top_vrep_image = VrepImage(client)
+    bottom_vrep_image = VrepImage(client, "NAO_bottom_camera")
     while (True):
-        cv2.imshow("image", vrepimage.get_camera_image())
+        top_frame = top_vrep_image.get_camera_image()
+        bottom_frame = bottom_vrep_image.get_camera_image()
+        # Write the frame into the file 'output.avi'
+        out_top.write(top_frame)
+        out_bottom.write(bottom_frame)
+
+        cv2.imshow("iamges", np.hstack((top_frame, bottom_frame)) )
         cv2.waitKey(1)
     client.__exit__()
     cv2.destroyAllWindows()
+    
+    out_bottom.release()
+    out_top.release()
+
+    #TODO: gravar com angulos diferentes
+    #TODO: gravar o campo inteiro. Todas as features.
+    #TODO: graver

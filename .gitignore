@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+#builds
+Cpp-Scripts/build-*
+
+#python stuff
+*.pyc
