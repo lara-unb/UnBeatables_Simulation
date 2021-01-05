@@ -34,5 +34,8 @@
 #builds
 Cpp-Scripts/build-*
 
+#vscode
+*/.vscode
+
 #python stuff
 *.pyc
