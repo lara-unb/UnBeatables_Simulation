@@ -12,7 +12,7 @@ import numpy as np
 
 vrep.simxFinish(-1)
 
-clientID = vrep.simxStart('127.0.0.1', 20002, True, True, 5000, 5)
+clientID = vrep.simxStart('127.0.0.1', 20100, True, True, 5000, 5)
 
 if clientID!=-1:
     print 'Connected to remote API server'
