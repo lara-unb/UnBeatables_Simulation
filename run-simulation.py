@@ -1,6 +1,11 @@
 import os
 import subprocess
 import time
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--num", type=int, default=1, help="Number of robots. by default, 1")
+args = parser.parse_args()
 
 code_path = (os.environ.get("NAO_CODE_LOCATION"))
 
@@ -31,7 +36,7 @@ cpp_nao_control_path = ([
 
 process_array = []
 
-for robot_id in range(4):
+for robot_id in range(args.num):
     cpp_nao_control_process = subprocess.Popen(
         [cpp_nao_control_path, "--qi-url", f":{9600+robot_id}"])
     time.sleep(1)
